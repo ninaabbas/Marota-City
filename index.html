@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Urban Planning Timeline (Alternating Layout)</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body {
+    font-family: 'Oswald', sans-serif;
+    background: #fafafa;
+    margin: 0;
+    padding: 40px;
+    overflow-x: auto;
+    color: #222;
+  }
+
+  .timeline-wrapper {
+    position: relative;
+    width: 2600px;
+    margin: auto;
+  }
+
+  /* --- PHASE LABELS --- */
+  .phase {
+    position: absolute;
+    top: 0;
+    height: 40px;
+    color: white;
+    text-align: center;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 40px;
+  }
+  .phase1 { background: #b03a2e; width: 800px; left: 0; }
+  .phase2 { background: #ca6f1e; width: 900px; left: 800px; }
+  .phase3 { background: #884ea0; width: 900px; left: 1700px; }
+
+  /* --- TIMELINE AXIS --- */
+  .axis {
+    position: absolute;
+    top: 200px;
+    height: 4px;
+    width: 100%;
+    background: #aaa;
+  }
+
+  /* --- YEAR MARKERS --- */
+  .year {
+    position: absolute;
+    top: 210px;
+    font-size: 12px;
+    color: #444;
+  }
+
+  /* --- EVENTS --- */
+  .event {
+    position: absolute;
+    width: 260px;
+    background: #fff;
+    border-left: 3px solid #333;
+    padding: 8px 12px;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    font-size: 13px;
+  }
+
+  /* Position types: above or below the axis */
+  .above {
+    top: 90px;
+  }
+  .below {
+    top: 240px;
+  }
+
+  .event .dot {
+    position: absolute;
+    left: -12px;
+    top: 8px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  .dot:hover { transform: scale(1.2); }
+
+  /* --- Legend Colors --- */
+  .red { background: #d33; }       /* Images & Videos */
+  .blue { background: #0055ff; }   /* Documents */
+  .orange { background: #ff9500; } /* Social Media */
+  .black { background: #000; }     /* Map */
+
+  /* --- Popup --- */
+  .popup {
+    display: none;
+    position: absolute;
+    top: -140%;
+    left: 110%;
+    background: #fff;
+    color: #222;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 12px;
+    width: 200px;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+    z-index: 10;
+  }
+
+  .popup.show { display: block; }
+
+  /* --- LEGEND --- */
+  .legend {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 13px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+
+  .legend div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+
+  .legend span {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 8px;
+    display: inline-block;
+  }
+
+  /* --- Connector Lines --- */
+
+  }
+</style>
+</head>
+<body>
+
+<div class="timeline-wrapper">
+  <!-- PHASE LABELS -->
+  <div class="phase phase1">WEAPONISATION OF URBAN PLANNING</div>
+  <div class="phase phase2">ACCUMULATION THROUGH DISPOSSESSION</div>
+  <div class="phase phase3">FROM DEMOLITIONS TO "RECONSTRUCTION"</div>
+
+  <!-- TIMELINE AXIS -->
+  <div class="axis"></div>
+
+  <!-- YEAR MARKERS -->
+  <div class="year" style="left:40px;">2009</div>
+  <div class="year" style="left:300px;">2011</div>
+  <div class="year" style="left:520px;">2013</div>
+  <div class="year" style="left:750px;">2015</div>
+  <div class="year" style="left:1000px;">2017</div>
+  <div class="year" style="left:1240px;">2019</div>
+  <div class="year" style="left:1480px;">2021</div>
+  <div class="year" style="left:1720px;">2023</div>
+  <div class="year" style="left:1950px;">2025</div>
+
+  <!-- EVENTS -->
+  <div class="event above" style="left:20px;">
+    <div class="dot blue" onclick="togglePopup('p1')"></div>
+    Rumour of displacement of Basateen Al-Razi community.
+    <div class="popup" id="p1"><b>2009</b><br>Placeholder for document link.</div>
+    <div class="connector above-line" style="left:10px;"></div>
+  </div>
+
+ <div class="event below" style="left:300px;">
+  <div class="dot red" onclick="togglePopup('p2')"></div>
+  Demonstration in Al-Mustafa Mosque, Mezzeh (20 July 2012).<br>
+  Enactment of Decree No. 66 of year 2012.
+  <div class="popup" id="p2">
+    <b>2012</b><br>
+    <iframe width="200" height="113"
+      src="https://www.youtube.com/embed/BxlAhjnqY8w?start=2"
+      frameborder="0"
+      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  </div>
+  <!-- <div class="connector below-line" style="left:10px;"></div> -->  <!-- connector removed -->
+</div>
+
+
+  <div class="event above" style="left:600px;">
+    <div class="dot blue" onclick="togglePopup('p3')"></div>
+    20–30% area was razed for its first road development.
+    <div class="popup" id="p3"><b>2013</b><br>Placeholder for document link.</div>
+    <div class="connector above-line" style="left:10px;"></div>
+  </div>
+
+  <div class="event below" style="left:750px;">
+    <div class="dot black" onclick="togglePopup('p4')"></div>
+    Decree No. 19 of 2015 allows establishment of Syrian Holding Private Companies.
+    <div class="popup" id="p4"><b>2015</b><br>http://damacham.sy/uploads/15957644350.pdf</div>
+    <div class="connector below-line" style="left:10px;"></div>
+  </div>
+
+  <div class="event above" style="left:1000px;">
+    <div class="dot red" onclick="togglePopup('p5')"></div>
+    Displacement and demolitions take place.
+    <div class="popup" id="p5"><b>2017</b><br>Placeholder for image link.</div>
+    <div class="connector above-line" style="left:10px;"></div>
+  </div>
+
+  <div class="event below" style="left:1180px;">
+    <div class="dot orange" onclick="togglePopup('p6')"></div>
+    Law No. 10 of 2018 ratified April 2, 2018, amended November 11, 2018.
+    <div class="popup" id="p6"><b>2018</b><br>Placeholder for social media post.</div>
+    <div class="connector below-line" style="left:10px;"></div>
+  </div>
+
+  <div class="event above" style="left:1350px;">
+    <div class="dot red" onclick="togglePopup('p7')"></div>
+    First promotional video from Marota official Instagram and YouTube.
+    <div class="popup" id="p7"><b>2018</b><br>Placeholder for video link.</div>
+    <div class="connector above-line" style="left:10px;"></div>
+  </div>
+
+  <div class="event below" style="left:1550px;">
+    <div class="dot blue" onclick="togglePopup('p8')"></div>
+    Syrian International Islamic Bank purchases plot in Marota City (2021).
+    <div class="popup" id="p8"><b>2021</b><br>Placeholder for document link.</div>
+    <div class="connector below-line" style="left:10px;"></div>
+  </div>
+
+  <div class="event above" style="left:1700px;">
+    <div class="dot red" onclick="togglePopup('p9')"></div>
+    A.A. Syria Towers Private JSC, subsidiary of Qatari company, established.
+    <div class="popup" id="p9"><b>2023</b><br>Placeholder for image.</div>
+    <div class="connector above-line" style="left:10px;"></div>
+  </div>
+
+  <div class="event below" style="left:1900px;">
+    <div class="dot orange" onclick="togglePopup('p10')"></div>
+    Afrad Petroleum Holding announces HQ completion in Marota City (2024).
+    <div class="popup" id="p10"><b>2024</b><br>Placeholder for social media link.</div>
+    <div class="connector below-line" style="left:10px;"></div>
+  </div>
+
+  <div class="event above" style="left:2100px;">
+    <div class="dot blue" onclick="togglePopup('p11')"></div>
+    Marota City hospital renderings by Katerji Engineering (2025).
+    <div class="popup" id="p11"><b>2025</b><br>Placeholder for project details.</div>
+    <div class="connector above-line" style="left:10px;"></div>
+  </div>
+</div>
+
+<!-- LEGEND -->
+<div class="legend">
+  <div><span class="red"></span> Images & Videos</div>
+  <div><span class="blue"></span> Documents</div>
+  <div><span class="orange"></span> Social Media</div>
+  <div><span class="black"></span> Map</div>
+</div>
+
+<script>
+function togglePopup(id) {
+  document.querySelectorAll('.popup').forEach(p => {
+    if (p.id === id) p.classList.toggle('show');
+    else p.classList.remove('show');
+  });
+}
+
+document.addEventListener('click', (e) => {
+  if (!e.target.classList.contains('dot')) {
+    document.querySelectorAll('.popup').forEach(p => p.classList.remove('show'));
+  }
+});
+</script>
+
+<<div class="maps-section" style="margin-top:200px;border-top:2px solid #000;padding:20px;">
+  <h3>Marota City Map Timeline</h3>
+  <input type="range" min="2009" max="2025" value="2009" id="yearSlider" oninput="updateMap(this.value)">
+  <p>Year: <span id="yearLabel">2009</span></p>
+  
+  <!-- Map iframe with start at 2009 -->
+  <iframe id="mapFrame" 
+          src="https://earthengine.google.com/iframes/timelapse_player_embed.html#v=33.4927,36.2481,12.14,latLng&t=0.0&start=2009&end=2025" 
+          width="800" height="500" style="border:1px solid #000;" allowfullscreen loading="lazy">
+  </iframe>
+</div>
+
+<script>
+function updateMap(year){
+  document.getElementById('yearLabel').innerText = year;
+  
+  // Updated placeholder map URLs per year (all starting 2009)
+  let urlMap = {
+    '2009':'https://earthengine.google.com/iframes/timelapse_player_embed.html#v=33.4927,36.2481,12.14,latLng&t=0.0&start=2009&end=2025',
+    '2010':'https://earthengine.google.com/iframes/timelapse_player_embed.html#v=33.4927,36.2481,12.14,latLng&t=0.0&start=2010&end=2025',
+    '2015':'https://earthengine.google.com/iframes/timelapse_player_embed.html#v=33.4927,36.2481,12.14,latLng&t=0.0&start=2015&end=2025',
+    '2020':'https://earthengine.google.com/iframes/timelapse_player_embed.html#v=33.4927,36.2481,12.14,latLng&t=0.0&start=2020&end=2025',
+    '2025':'https://earthengine.google.com/iframes/timelapse_player_embed.html#v=33.4927,36.2481,12.14,latLng&t=0.0&start=2025&end=2025'
+  };
+  
+  // Set iframe src for the selected year
+  document.getElementById('mapFrame').src = urlMap[year] || urlMap['2009'];
+}
+</script>
+
+
+ <!-- Right side: 10 images with year subheaders -->
+<div style="flex: 0 0 120px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+
+  <figure>
+    <img src="2013.png" alt="2013" style="width:100%; border:1px solid #000;">
+    <figcaption style="font-size:48px;px; text-align:center;">2013</figcaption>
+  </figure>
+
+  <figure>
+    <img src="2014.png" alt="2014" style="width:100%; border:1px solid #000;">
+    <figcaption style="font-size:48px;px; text-align:center;">2014</figcaption>
+  </figure>
+
+  <figure>
+    <img src="2015.png" alt="2015" style="width:100%; border:1px solid #000;">
+    <figcaption style="font-size:48px;px; text-align:center;">2015</figcaption>
+  </figure>
+
+  <figure>
+    <img src="2016.png" alt="2016" style="width:100%; border:1px solid #000;">
+    <figcaption style="font-size:48px;px; text-align:center;">2016</figcaption>
+  </figure>
+
+  <figure>
+    <img src="2018.png" alt="2018" style="width:100%; border:1px solid #000;">
+    <figcaption style="font-size:48px;px; text-align:center;">2018</figcaption>
+  </figure>
+
+  <figure>
+    <img src="2019.png" alt="2019" style="width:100%; border:1px solid #000;">
+    <figcaption style="font-size:48px;px; text-align:center;">2019</figcaption>
+  </figure>
+
+  <figure>
+    <img src="2020.png" alt="2020" style="width:100%; border:1px solid #000;">
+    <figcaption style="font-size:48px;px; text-align:center;">2020</figcaption>
+  </figure>
+
+  <figure>
+    <img src="2021.png" alt="2021" style="width:100%; border:1px solid #000;">
+    <figcaption style="font-size:48px; text-align:center;">2021</figcaption>
+  </figure>
+
+  <figure>
+    <img src="2022.png" alt="2022" style="width:100%; border:1px solid #000;">
+    <figcaption style="font-size:48px; text-align:center;">2022</figcaption>
+  </figure>
+
+  <figure>
+    <img src="2023.png" alt="2023" style="width:100%; border:1px solid #000;">
+    <figcaption style="font-size:48px; text-align:center;">2023</figcaption>
+  </figure>
+
+</div>
